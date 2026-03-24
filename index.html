@@ -9,178 +9,162 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#000;color:#e6d8a8;overflow-x:hidden}
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:#000;
-  color:#e6d8a8;
-  overflow-x:hidden;
+/* PARALLAX LAYERS */
+.parallax{
+ position:fixed;
+ inset:0;
+ z-index:-5;
+ overflow:hidden;
+}
+.layer{
+ position:absolute;
+ width:120%;
+ height:120%;
+ top:-10%;
+ left:-10%;
+ pointer-events:none;
 }
 
-/* PARALLAX BACKGROUND */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(212,175,55,0.15), transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(192,192,192,0.1), transparent 40%),
-    linear-gradient(#020202,#000);
-  z-index:-3;
+.layer.bg{
+ background:radial-gradient(circle at 30% 20%, rgba(212,175,55,0.15), transparent 40%),
+            radial-gradient(circle at 80% 80%, rgba(192,192,192,0.1), transparent 40%),
+            linear-gradient(#010101,#000);
 }
 
-/* STARS */
+.layer.stars{
+ background:transparent;
+}
+
+/* Stars */
 .star{
-  position:fixed;
-  width:2px;height:2px;
-  background:#d4af37;
-  opacity:0.6;
-  animation:twinkle 3s infinite ease-in-out;
+ position:absolute;width:2px;height:2px;background:#d4af37;opacity:.7;
+ animation:twinkle 3s infinite ease-in-out;
 }
+@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
 
-@keyframes twinkle{
-  0%,100%{opacity:0.2}
-  50%{opacity:1}
-}
-
-/* MOON */
+/* Moon */
 .moon{
-  position:fixed;
-  top:60px;right:80px;
-  width:80px;height:80px;
-  border-radius:50%;
-  background:radial-gradient(circle,#fff,#ccc);
-  box-shadow:0 0 40px rgba(255,255,255,0.4);
+ position:absolute;
+ top:80px;right:120px;
+ width:100px;height:100px;
+ border-radius:50%;
+ background:radial-gradient(circle,#fff,#ddd);
+ box-shadow:0 0 80px rgba(255,255,255,0.6);
 }
 
-/* MOSQUE */
-.mosque{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  height:120px;
-  background:linear-gradient(to top, #000, transparent);
-}
-
+/* Sections */
 section{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
+ min-height:100vh;
+ display:flex;justify-content:center;align-items:center;
+ text-align:center;padding:20px;
 }
 
 .container{
-  max-width:700px;
-  padding:40px 30px;
-  border-radius:20px;
-  background:rgba(0,0,0,0.6);
-  border:1px solid rgba(212,175,55,0.4);
-  box-shadow:0 30px 80px rgba(0,0,0,0.8);
+ max-width:750px;padding:45px 30px;border-radius:20px;
+ background:rgba(0,0,0,0.55);
+ border:1px solid rgba(212,175,55,0.4);
+ box-shadow:0 40px 120px rgba(0,0,0,0.9), inset 0 0 30px rgba(212,175,55,0.1);
+ backdrop-filter: blur(10px);
 }
 
-h1,h2{
-  font-family:'Cinzel',serif;
-}
+h1,h2{font-family:'Cinzel',serif}
+h1{font-size:64px}
+h2{font-size:36px;margin-bottom:10px}
 
-h1{font-size:60px;}
-
-h2{font-size:34px;margin-bottom:10px;}
-
-p{line-height:1.8;opacity:0.9}
+p{line-height:1.8;opacity:.9}
 
 .divider{
-  width:120px;height:2px;
-  background:linear-gradient(90deg,transparent,gold,silver,transparent);
-  margin:20px auto;
+ width:150px;height:2px;margin:20px auto;
+ background:linear-gradient(90deg,transparent,gold,silver,transparent);
 }
 
-.fade{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s ease;
-}
-
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
-}
+.fade{opacity:0;transform:translateY(60px);transition:1s}
+.fade.show{opacity:1;transform:translateY(0)}
 
 button{
-  margin-top:20px;
-  padding:12px 24px;
-  border-radius:30px;
-  border:none;
-  background:linear-gradient(135deg,gold,silver);
-  cursor:pointer;
-  font-weight:bold;
+ margin-top:20px;padding:12px 24px;border:none;border-radius:30px;
+ background:linear-gradient(135deg,gold,silver);
+ font-weight:bold;cursor:pointer;transition:.3s;
 }
-
-button:hover{
-  transform:scale(1.1);
-}
+button:hover{transform:scale(1.1)}
 
 </style>
 </head>
 
 <body>
 
-<div class="moon"></div>
-<div class="mosque"></div>
+<div class="parallax">
+ <div class="layer bg" data-speed="0.2"></div>
+ <div class="layer stars" id="stars" data-speed="0.5"></div>
+ <div class="moon" data-speed="0.3"></div>
+</div>
 
 <script>
-for(let i=0;i<80;i++){
-  let s=document.createElement('div');
-  s.className='star';
-  s.style.left=Math.random()*100+'%';
-  s.style.top=Math.random()*100+'%';
-  s.style.animationDelay=Math.random()*3+'s';
-  document.body.appendChild(s);
+// create stars
+const starContainer=document.getElementById('stars');
+for(let i=0;i<120;i++){
+ let s=document.createElement('div');
+ s.className='star';
+ s.style.left=Math.random()*100+'%';
+ s.style.top=Math.random()*100+'%';
+ s.style.animationDelay=Math.random()*3+'s';
+ starContainer.appendChild(s);
 }
+
+// parallax scroll
+window.addEventListener('scroll',()=>{
+ document.querySelectorAll('[data-speed]').forEach(el=>{
+  const speed=el.getAttribute('data-speed');
+  const y=window.scrollY*speed;
+  el.style.transform=`translateY(${y}px)`;
+ });
+});
 </script>
 
 <section>
-  <div class="container fade">
-    <h1>Eid Dawat</h1>
-    <div class="divider"></div>
-    <p>Scroll down for a royal experience ✨</p>
-  </div>
+ <div class="container fade">
+  <h1>Eid Dawat</h1>
+  <div class="divider"></div>
+  <p>Scroll to experience a cinematic royal invite ✨</p>
+ </div>
 </section>
 
 <section>
-  <div class="container fade">
-    <h2>You are cordially invited</h2>
-    <div class="divider"></div>
-    <p>Join us for an unforgettable evening filled with joy, elegance, and celebration. Let us gather and make this Eid truly special.</p>
-    <p style="margin-top:15px;opacity:0.8">Your presence will make it even more memorable.</p>
-  </div>
+ <div class="container fade">
+  <h2>You are cordially invited</h2>
+  <div class="divider"></div>
+  <p>Join us for an elegant evening filled with joy, celebration, and togetherness.</p>
+  <p style="margin-top:10px">Your presence will truly elevate this occasion.</p>
+ </div>
 </section>
 
 <section>
-  <div class="container fade">
-    <h2>Event Details</h2>
-    <div class="divider"></div>
-    <p>📍 Rehman House</p>
-    <p>🕗 8:00 PM</p>
-    <p>📅 26 March 2026</p>
-    <button onclick="window.open('https://maps.google.com')">View Location</button>
-  </div>
+ <div class="container fade">
+  <h2>Event Details</h2>
+  <div class="divider"></div>
+  <p>📍 Rehman House</p>
+  <p>🕗 8:00 PM</p>
+  <p>📅 26 March 2026</p>
+  <button onclick="window.open('https://maps.google.com')">View Location</button>
+  <button onclick="window.open('https://wa.me/?text=I will attend your Eid Dawat!')">RSVP on WhatsApp</button>
+ </div>
 </section>
 
 <section>
-  <div class="container fade">
-    <h2>Hosted by</h2>
-    <div class="divider"></div>
-    <h1 style="font-size:42px">Bilal Rehman</h1>
-    <p style="margin-top:10px">We look forward to your gracious presence.</p>
-  </div>
+ <div class="container fade">
+  <h2>Hosted by</h2>
+  <div class="divider"></div>
+  <h1 style="font-size:42px">Bilal Rehman</h1>
+  <p>We look forward to your gracious presence ✨</p>
+ </div>
 </section>
 
 <script>
 const els=document.querySelectorAll('.fade');
 const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show')}})
+ entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show')}})
 });
 els.forEach(el=>obs.observe(el));
 </script>
