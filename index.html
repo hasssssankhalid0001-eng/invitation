@@ -8,11 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* {margin:0;padding:0;box-sizing:border-box;}
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -23,93 +19,107 @@ body {
 
 section {
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  position:relative;
 }
 
-.container {
-  max-width: 600px;
+.container {max-width:600px;z-index:2;}
+
+h1,h2 {
+  font-family:'Playfair Display',serif;
+  letter-spacing:1px;
 }
 
-h1, h2 {
-  font-family: 'Playfair Display', serif;
-  letter-spacing: 1px;
-}
+h1 {font-size:56px;}
 
-h1 {
-  font-size: 52px;
-}
+h2 {font-size:34px;margin-bottom:10px;}
 
-h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
+p {font-size:16px;line-height:1.7;opacity:0.9;}
 
-p {
-  font-size: 16px;
-  line-height: 1.7;
-  opacity: 0.9;
-}
+/* Premium gradient backgrounds */
+.hero {background: radial-gradient(circle at top, #0f2027, #000);} 
+.message {background: linear-gradient(180deg,#000,#0b132b);} 
+.details {background: linear-gradient(180deg,#0b132b,#000);} 
+.host {background: radial-gradient(circle,#000,#0f2027);} 
 
-/* Section backgrounds */
-.hero {
-  background: radial-gradient(circle at center, #0f2027, #000);
-}
-
-.message {
-  background: linear-gradient(180deg, #000, #0b132b);
-}
-
-.details {
-  background: linear-gradient(180deg, #0b132b, #000);
-}
-
-.host {
-  background: radial-gradient(circle, #000, #0f2027);
-}
-
+/* glowing divider */
 .divider {
-  width: 80px;
-  height: 2px;
-  background: gold;
-  margin: 15px auto;
+  width:80px;height:2px;
+  background:linear-gradient(90deg,transparent,gold,transparent);
+  margin:18px auto;
 }
 
-.highlight {
-  margin: 10px 0;
-  font-size: 18px;
-}
+.highlight {margin:10px 0;font-size:18px;}
 
+.footer {font-size:14px;opacity:0.8;margin-top:20px;}
+
+/* Fade animation */
 .fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s ease;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1s ease;
 }
 
 .fade.show {
-  opacity: 1;
-  transform: translateY(0);
+  opacity:1;
+  transform:translateY(0);
 }
 
-.footer {
-  font-size: 14px;
-  opacity: 0.8;
-  margin-top: 20px;
+/* Floating lantern effect */
+.lantern {
+  position:absolute;
+  width:40px;
+  height:60px;
+  background:radial-gradient(circle,gold,#c9a227);
+  border-radius:20px;
+  opacity:0.15;
+  animation:float 6s infinite ease-in-out;
 }
+
+.l1 {left:10%;top:80%;animation-delay:0s;}
+.l2 {left:80%;top:90%;animation-delay:2s;}
+.l3 {left:50%;top:85%;animation-delay:4s;}
+
+@keyframes float {
+  0% {transform:translateY(0);} 
+  50% {transform:translateY(-80px);} 
+  100% {transform:translateY(0);} 
+}
+
+/* Button */
+button {
+  margin-top:20px;
+  padding:12px 22px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,gold,#c9a227);
+  color:black;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover {transform:scale(1.08);}
 
 </style>
 </head>
 
 <body>
 
+<!-- floating lanterns -->
+<div class="lantern l1"></div>
+<div class="lantern l2"></div>
+<div class="lantern l3"></div>
+
 <section class="hero">
   <div class="container fade">
     <h1>Eid Dawat</h1>
     <div class="divider"></div>
-    <p>Scroll down to open your invitation ✨</p>
+    <p>Scroll to experience the invitation ✨</p>
   </div>
 </section>
 
@@ -118,10 +128,10 @@ p {
     <h2>You are cordially invited</h2>
     <div class="divider"></div>
     <p>
-      Join us for a joyful evening filled with warmth, delicious food, and heartfelt moments.
-      Let us celebrate the spirit of Eid together in happiness and gratitude.
+      Join us for an evening of celebration, warmth, and togetherness.
+      Let us embrace the joy of Eid with laughter, delicious food, and cherished memories.
     </p>
-    <p class="footer">Your presence will make this occasion even more special.</p>
+    <p class="footer">Your presence will truly make this gathering special.</p>
   </div>
 </section>
 
@@ -132,6 +142,7 @@ p {
     <div class="highlight">📍 Rehman House</div>
     <div class="highlight">🕗 8:00 PM</div>
     <div class="highlight">📅 26 March 2026</div>
+    <button onclick="window.open('https://maps.google.com')">View Location</button>
   </div>
 </section>
 
@@ -139,23 +150,19 @@ p {
   <div class="container fade">
     <h2>Hosted by</h2>
     <div class="divider"></div>
-    <h1 style="font-size:40px;">Bilal Rehman</h1>
-    <p class="footer">We look forward to welcoming you and sharing this beautiful evening together.</p>
+    <h1 style="font-size:42px;">Bilal Rehman</h1>
+    <p class="footer">We eagerly await your presence to make this evening unforgettable.</p>
   </div>
 </section>
 
 <script>
-const elements = document.querySelectorAll('.fade');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
+const elements=document.querySelectorAll('.fade');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('show');}
   });
 });
-
-elements.forEach(el => observer.observe(el));
+elements.forEach(el=>observer.observe(el));
 </script>
 
 </body>
