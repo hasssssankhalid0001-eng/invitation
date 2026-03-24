@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Invitation</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #0b1d2a, #000);
+  font-family: 'Georgia', serif;
+  color: gold;
+}
+
+/* Card */
+.card {
+  width: 340px;
+  height: 520px;
+  perspective: 1200px;
+}
+
+/* Inner */
+.inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* Flip on click */
+.card.open .inner {
+  transform: rotateY(180deg);
+}
+
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* FRONT */
+.front {
+  background: linear-gradient(135deg, #132c3d, #0b1d2a);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.front h1 {
+  font-size: 42px;
+  margin: 0;
+}
+
+.front p {
+  opacity: 0.8;
+}
+
+/* BACK */
+.back {
+  background: #0b1d2a;
+  transform: rotateY(180deg);
+  text-align: center;
+}
+
+.back h2 {
+  margin-top: 10px;
+}
+
+.highlight {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background: gold;
+  color: black;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" onclick="this.classList.toggle('open')">
+  <div class="inner">
+
+    <!-- FRONT -->
+    <div class="side front">
+      <h1>Eid</h1>
+      <p>Tap to Open Invitation ✨</p>
+    </div>
+
+    <!-- BACK -->
+    <div class="side back">
+      <h2>Eid Dawat</h2>
+      <p>You are cordially invited</p>
+
+      <div class="highlight">📍 Rehman House</div>
+      <div class="highlight">🕗 8:00 PM</div>
+      <div class="highlight">📅 26 March 2026</div>
+
+      <p>Hosted by</p>
+      <h2>Bilal Rehman</h2>
+
+      <button onclick="event.stopPropagation(); window.open('https://maps.google.com')">
+        View Location
+      </button>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
