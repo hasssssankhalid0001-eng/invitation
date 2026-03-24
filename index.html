@@ -5,138 +5,167 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eid Dawat Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<!-- Premium Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-* {margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box}
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #05080f;
-  color: #f5d97b;
-  overflow-x: hidden;
+body{
+  font-family:'Poppins',sans-serif;
+  color:#e6d8a8;
+  background:#000;
+  overflow-x:hidden;
 }
 
-section {
-  height: 100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
-  position:relative;
+/* Global luxury background */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(212,175,55,0.15), transparent 60%),
+    radial-gradient(1000px 500px at 80% 100%, rgba(192,192,192,0.12), transparent 60%),
+    linear-gradient(180deg,#050505,#000);
+  z-index:-2;
 }
 
-.container {max-width:600px;z-index:2;}
-
-h1,h2 {
-  font-family:'Playfair Display',serif;
-  letter-spacing:1px;
+/* subtle texture */
+body::after{
+  content:"";
+  position:fixed;inset:0;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 6px);
+  opacity:.25;
+  z-index:-1;
 }
 
-h1 {font-size:56px;}
-
-h2 {font-size:34px;margin-bottom:10px;}
-
-p {font-size:16px;line-height:1.7;opacity:0.9;}
-
-/* Premium gradient backgrounds */
-.hero {background: radial-gradient(circle at top, #0f2027, #000);} 
-.message {background: linear-gradient(180deg,#000,#0b132b);} 
-.details {background: linear-gradient(180deg,#0b132b,#000);} 
-.host {background: radial-gradient(circle,#000,#0f2027);} 
-
-/* glowing divider */
-.divider {
-  width:80px;height:2px;
-  background:linear-gradient(90deg,transparent,gold,transparent);
-  margin:18px auto;
+section{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:28px;position:relative;
 }
 
-.highlight {margin:10px 0;font-size:18px;}
+.container{max-width:720px}
 
-.footer {font-size:14px;opacity:0.8;margin-top:20px;}
+h1,h2{font-family:'Cinzel',serif;letter-spacing:2px}
 
-/* Fade animation */
-.fade {
-  opacity:0;
-  transform:translateY(40px);
-  transition:all 1s ease;
+h1{font-size:64px}
+
+h2{font-size:36px;margin-bottom:12px}
+
+p{font-size:16px;line-height:1.8;opacity:.9}
+
+/* Luxury card panels */
+.panel{
+  padding:36px 28px;
+  border-radius:24px;
+  border:1px solid rgba(212,175,55,0.35);
+  background:
+    linear-gradient(180deg, rgba(10,10,10,.85), rgba(0,0,0,.85)),
+    radial-gradient(circle at 50% 0%, rgba(212,175,55,0.15), transparent 60%);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.8),
+    inset 0 0 40px rgba(212,175,55,.08);
 }
 
-.fade.show {
-  opacity:1;
-  transform:translateY(0);
+/* Divider */
+.divider{
+  width:120px;height:2px;margin:18px auto;
+  background:linear-gradient(90deg, transparent, #d4af37, #c0c0c0, transparent);
+  filter:drop-shadow(0 0 6px rgba(212,175,55,.5));
 }
 
-/* Floating lantern effect */
-.lantern {
-  position:absolute;
-  width:40px;
-  height:60px;
-  background:radial-gradient(circle,gold,#c9a227);
-  border-radius:20px;
-  opacity:0.15;
-  animation:float 6s infinite ease-in-out;
+.highlight{margin:10px 0;font-size:18px}
+
+.footer{font-size:14px;opacity:.8;margin-top:18px}
+
+/* Fade reveal */
+.fade{opacity:0;transform:translateY(40px);transition:all 1s ease}
+.fade.show{opacity:1;transform:translateY(0)}
+
+/* Floating lanterns */
+.lantern{
+  position:fixed;width:44px;height:70px;border-radius:24px;
+  background:radial-gradient(circle,#d4af37,#8c6f1a);
+  opacity:.12;filter:blur(.2px);
+  animation:float 7s infinite ease-in-out;
+}
+.l1{left:8%;bottom:0;animation-delay:0s}
+.l2{left:50%;bottom:-40px;animation-delay:2s}
+.l3{left:88%;bottom:0;animation-delay:4s}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-120px)}
+  100%{transform:translateY(0)}
 }
 
-.l1 {left:10%;top:80%;animation-delay:0s;}
-.l2 {left:80%;top:90%;animation-delay:2s;}
-.l3 {left:50%;top:85%;animation-delay:4s;}
-
-@keyframes float {
-  0% {transform:translateY(0);} 
-  50% {transform:translateY(-80px);} 
-  100% {transform:translateY(0);} 
+/* Sparkle particles */
+.sparkle{
+  position:fixed;width:3px;height:3px;border-radius:50%;
+  background:#d4af37;opacity:.6;
+  animation:twinkle 3s infinite ease-in-out;
 }
+@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.9}}
+
+/* Sections tone tweaks */
+.hero .panel{border-color:rgba(212,175,55,.5)}
+.message .panel{border-color:rgba(192,192,192,.35)}
+.details .panel{border-color:rgba(212,175,55,.4)}
+.host .panel{border-color:rgba(192,192,192,.45)}
 
 /* Button */
-button {
-  margin-top:20px;
-  padding:12px 22px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(135deg,gold,#c9a227);
-  color:black;
-  font-weight:500;
-  cursor:pointer;
-  transition:0.3s;
+button{
+  margin-top:22px;padding:12px 22px;border-radius:30px;border:none;
+  background:linear-gradient(135deg,#d4af37,#c0c0c0);
+  color:#000;font-weight:600;cursor:pointer;
+  box-shadow:0 10px 30px rgba(212,175,55,.35);
+  transition:.3s
 }
-
-button:hover {transform:scale(1.08);}
+button:hover{transform:scale(1.08)}
 
 </style>
 </head>
 
 <body>
 
-<!-- floating lanterns -->
+<!-- lanterns -->
 <div class="lantern l1"></div>
 <div class="lantern l2"></div>
 <div class="lantern l3"></div>
 
+<!-- sparkles -->
+<script>
+for(let i=0;i<40;i++){
+  const s=document.createElement('div');
+  s.className='sparkle';
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*100+'%';
+  s.style.animationDelay=(Math.random()*3)+'s';
+  document.body.appendChild(s);
+}
+</script>
+
 <section class="hero">
-  <div class="container fade">
+  <div class="container panel fade">
     <h1>Eid Dawat</h1>
     <div class="divider"></div>
-    <p>Scroll to experience the invitation ✨</p>
+    <p>Scroll to experience a royal invitation ✨</p>
   </div>
 </section>
 
 <section class="message">
-  <div class="container fade">
+  <div class="container panel fade">
     <h2>You are cordially invited</h2>
     <div class="divider"></div>
     <p>
-      Join us for an evening of celebration, warmth, and togetherness.
-      Let us embrace the joy of Eid with laughter, delicious food, and cherished memories.
+      Join us for an evening of elegance, celebration, and togetherness.
+      Let the spirit of Eid bring warmth, joy, and unforgettable moments.
     </p>
-    <p class="footer">Your presence will truly make this gathering special.</p>
+    <p class="footer">Your presence will add grace to this beautiful gathering.</p>
   </div>
 </section>
 
 <section class="details">
-  <div class="container fade">
+  <div class="container panel fade">
     <h2>Event Details</h2>
     <div class="divider"></div>
     <div class="highlight">📍 Rehman House</div>
@@ -147,22 +176,20 @@ button:hover {transform:scale(1.08);}
 </section>
 
 <section class="host">
-  <div class="container fade">
+  <div class="container panel fade">
     <h2>Hosted by</h2>
     <div class="divider"></div>
-    <h1 style="font-size:42px;">Bilal Rehman</h1>
-    <p class="footer">We eagerly await your presence to make this evening unforgettable.</p>
+    <h1 style="font-size:44px">Bilal Rehman</h1>
+    <p class="footer">We look forward to welcoming you for a truly memorable evening.</p>
   </div>
 </section>
 
 <script>
-const elements=document.querySelectorAll('.fade');
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add('show');}
-  });
+const els=document.querySelectorAll('.fade');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show')}})
 });
-elements.forEach(el=>observer.observe(el));
+els.forEach(el=>obs.observe(el));
 </script>
 
 </body>
